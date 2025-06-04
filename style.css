@@ -1,0 +1,216 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.screen {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 100%;
+    max-width: 500px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 15px;
+}
+
+.screen.active {
+    display: flex; /* Show active screen */
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.input-group input[type="text"],
+.input-group input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.status-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Chat Screen Specifics */
+.online-users {
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+#messageBox {
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    height: 300px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #fcfcfc;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 8px;
+    max-width: 80%;
+}
+
+.message-wrapper.sent {
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.message-wrapper.received {
+    align-self: flex-start;
+    align-items: flex-start;
+}
+
+.message-info {
+    font-size: 0.75em;
+    color: #888;
+    margin-bottom: 2px;
+}
+
+.message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    line-height: 1.4;
+    word-wrap: break-word;
+    white-space: pre-wrap; /* Preserve whitespace and line breaks */
+    transition: all 0.3s ease;
+}
+
+.message-wrapper.sent .message {
+    background-color: #d1e7dd; /* Light green for sent messages */
+    color: #155724;
+    border-bottom-right-radius: 2px;
+}
+
+.message-wrapper.received .message {
+    background-color: #e2e3e5; /* Light gray for received messages */
+    color: #383d41;
+    border-bottom-left-radius: 2px;
+}
+
+.message-wrapper.status .message {
+    background-color: #e9ecef;
+    color: #495057;
+    text-align: center;
+    width: 100%;
+    margin: 5px auto;
+    font-style: italic;
+    font-size: 0.9em;
+}
+
+/* Encryption/Decryption specific styles */
+.message-wrapper .message.encrypted-display {
+    font-style: italic;
+    color: #6c757d; /* Gray color for encrypted messages */
+    cursor: pointer; /* Indicate it's clickable */
+    text-decoration: underline dotted; /* Hint for clickability */
+}
+
+.message-wrapper .message.encrypted-display::before {
+    content: "Click để giải mã: "; /* Vietnamese hint */
+    font-weight: bold;
+    color: #007bff; /* Highlight hint */
+}
+
+.message-wrapper .message.decryption-error {
+    color: #dc3545 !important; /* Red for decryption errors */
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline dashed;
+}
+
+.message-wrapper .message.decrypted-on-click {
+    font-style: normal;
+    color: #333; /* Regular color for decrypted messages */
+    text-decoration: none;
+    cursor: default;
+}
+
+/* Input area for chat messages */
+.message-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-input-area .input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 0; /* Override default margin */
+}
+
+.message-input-area .input-group input[type="text"] {
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+
+.message-input-area .input-group #encryptionKey {
+    width: 100%; /* Make encryption key input full width */
+}
+
+@media (max-width: 600px) {
+    .screen {
+        padding: 20px;
+        margin: 10px;
+    }
+    .message-input-area .input-group {
+        flex-direction: column;
+    }
+    .message-input-area .input-group button {
+        width: 100%;
+    }
+}
